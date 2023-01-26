@@ -59,8 +59,4 @@ Working with Delta Tables and apply some transformations such as ZODRDER or OPTI
 Using AutoLoader and COPY to process incremental Data Processing, though steaming.
 <img width="542" alt="Screenshot 2023-01-23 at 07 24 57" src="https://user-images.githubusercontent.com/45521680/213977628-9b2ea79a-2879-4a95-82ec-d8f7ec94eebf.png">
 
-## 4. DLT (Delta Live Tables)
-
-<img width="406" alt="Screenshot 2023-01-22 at 15 33 42" src="https://user-images.githubusercontent.com/45521680/213929788-f48d70b4-733e-496d-85e5-6577b11d582d.png">
-<img width="398" alt="Screenshot 2023-01-22 at 15 34 42" src="https://user-images.githubusercontent.com/45521680/213929785-fd18f375-4fd6-45f5-b7f7-a812a12c83d0.png">
 
