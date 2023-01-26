@@ -1,10 +1,4 @@
 -- Databricks notebook source
--- MAGIC %md-sandbox
--- MAGIC 
--- MAGIC <div  style="text-align: center; line-height: 0; padding-top: 9px;">
--- MAGIC   <img src="https://dalhussein.blob.core.windows.net/course-resources/bookstore_schema.png" alt="Databricks Learning" style="width: 600">
--- MAGIC </div>
-
 -- COMMAND ----------
 
 -- MAGIC %run ../Includes/Copy-Datasets
@@ -19,7 +13,7 @@ DESCRIBE customers
 
 -- COMMAND ----------
 
-SELECT customer_id, profile:first_name, profile:address:country 
+SELECT customer_id, profile:first_name, profile:address:country
 FROM customers
 
 -- COMMAND ----------
@@ -29,8 +23,8 @@ SELECT from_json(profile) AS profile_struct
 
 -- COMMAND ----------
 
-SELECT profile 
-FROM customers 
+SELECT profile
+FROM customers
 LIMIT 1
 
 -- COMMAND ----------
@@ -38,7 +32,7 @@ LIMIT 1
 CREATE OR REPLACE TEMP VIEW parsed_customers AS
   SELECT customer_id, from_json(profile, schema_of_json('{"first_name":"Thomas","last_name":"Lane","gender":"Male","address":{"street":"06 Boulevard Victor Hugo","city":"Paris","country":"France"}}')) AS profile_struct
   FROM customers;
-  
+
 SELECT * FROM parsed_customers
 
 -- COMMAND ----------
@@ -55,7 +49,7 @@ FROM parsed_customers
 CREATE OR REPLACE TEMP VIEW customers_final AS
   SELECT customer_id, profile_struct.*
   FROM parsed_customers;
-  
+
 SELECT * FROM customers_final
 
 -- COMMAND ----------
@@ -65,7 +59,7 @@ FROM orders
 
 -- COMMAND ----------
 
-SELECT order_id, customer_id, explode(books) AS book 
+SELECT order_id, customer_id, explode(books) AS book
 FROM orders
 
 -- COMMAND ----------
@@ -89,7 +83,7 @@ GROUP BY customer_id
 CREATE OR REPLACE VIEW orders_enriched AS
 SELECT *
 FROM (
-  SELECT *, explode(books) AS book 
+  SELECT *, explode(books) AS book
   FROM orders) o
 INNER JOIN books b
 ON o.book.book_id = b.book_id;
@@ -101,21 +95,21 @@ SELECT * FROM orders_enriched
 CREATE OR REPLACE TEMP VIEW orders_updates
 AS SELECT * FROM parquet.`${dataset.bookstore}/orders-new`;
 
-SELECT * FROM orders 
-UNION 
-SELECT * FROM orders_updates 
+SELECT * FROM orders
+UNION
+SELECT * FROM orders_updates
 
 -- COMMAND ----------
 
-SELECT * FROM orders 
-INTERSECT 
-SELECT * FROM orders_updates 
+SELECT * FROM orders
+INTERSECT
+SELECT * FROM orders_updates
 
 -- COMMAND ----------
 
-SELECT * FROM orders 
-MINUS 
-SELECT * FROM orders_updates 
+SELECT * FROM orders
+MINUS
+SELECT * FROM orders_updates
 
 -- COMMAND ----------
 

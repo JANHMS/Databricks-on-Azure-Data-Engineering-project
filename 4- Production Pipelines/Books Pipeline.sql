@@ -1,8 +1,5 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC 
--- MAGIC 
--- MAGIC 
 -- MAGIC ## Bronze Layer Tables
 
 -- COMMAND ----------
@@ -14,9 +11,9 @@ AS SELECT * FROM cloud_files("${datasets_path}/books-cdc", "json")
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC 
--- MAGIC 
--- MAGIC 
+-- MAGIC
+-- MAGIC
+-- MAGIC
 -- MAGIC ## Silver Layer Tables
 
 -- COMMAND ----------
@@ -33,8 +30,8 @@ APPLY CHANGES INTO LIVE.books_silver
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC 
--- MAGIC 
+-- MAGIC
+-- MAGIC
 -- MAGIC ## Gold Layer Tables
 
 -- COMMAND ----------
@@ -55,7 +52,7 @@ AS SELECT author, count(*) as books_count, current_timestamp() updated_time
 CREATE LIVE VIEW books_sales
   AS SELECT b.title, o.quantity
     FROM (
-      SELECT *, explode(books) AS book 
+      SELECT *, explode(books) AS book
       FROM LIVE.orders_cleaned) o
     INNER JOIN LIVE.books_silver b
     ON o.book.book_id = b.book_id;

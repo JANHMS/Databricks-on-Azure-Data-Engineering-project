@@ -23,7 +23,7 @@ def download_dataset(source, target):
 
 # COMMAND ----------
 
-data_source_uri = "wasbs://course-resources@dalhussein.blob.core.windows.net/datasets/bookstore/v1/"
+data_source_uri = "wasbs://project-resources@janheimes.blob.core.windows.net/datasets/bookstore/v1/"
 dataset_bookstore = 'dbfs:/mnt/demo-datasets/bookstore'
 spark.conf.set(f"dataset.bookstore", dataset_bookstore)
 
@@ -48,7 +48,7 @@ def load_file(current_index):
     print(f"Loading {latest_file} file to the bookstore dataset")
     dbutils.fs.cp(f"{streaming_dir}/{latest_file}", f"{raw_dir}/{latest_file}")
 
-    
+
 def load_new_data(all=False):
     index = get_index(raw_dir)
     if index >= 10:
@@ -78,7 +78,7 @@ def load_json_file(current_index):
     print(f"Loading {latest_file} books file to the bookstore dataset")
     dbutils.fs.cp(f"{streaming_books_dir}/{latest_file}", f"{raw_books_dir}/{latest_file}")
 
-    
+
 def load_new_json_data(all=False):
     index = get_index(raw_orders_dir)
     if index >= 10:

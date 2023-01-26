@@ -1,9 +1,4 @@
 -- Databricks notebook source
--- MAGIC %md-sandbox
--- MAGIC 
--- MAGIC <div  style="text-align: center; line-height: 0; padding-top: 9px;">
--- MAGIC   <img src="https://dalhussein.blob.core.windows.net/course-resources/bookstore_schema.png" alt="Databricks Learning" style="width: 600">
--- MAGIC </div>
 
 -- COMMAND ----------
 
@@ -66,7 +61,7 @@ DESCRIBE FUNCTION EXTENDED get_url
 
 CREATE FUNCTION site_type(email STRING)
 RETURNS STRING
-RETURN CASE 
+RETURN CASE
           WHEN email like "%.com" THEN "Commercial business"
           WHEN email like "%.org" THEN "Non-profits organization"
           WHEN email like "%.edu" THEN "Educational institution"

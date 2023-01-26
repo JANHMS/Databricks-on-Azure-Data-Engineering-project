@@ -1,10 +1,3 @@
--- Databricks notebook source
--- MAGIC %md-sandbox
--- MAGIC 
--- MAGIC <div  style="text-align: center; line-height: 0; padding-top: 9px;">
--- MAGIC   <img src="https://dalhussein.blob.core.windows.net/course-resources/bookstore_schema.png" alt="Databricks Learning" style="width: 600">
--- MAGIC </div>
-
 -- COMMAND ----------
 
 -- MAGIC %run ../Includes/Copy-Datasets
@@ -131,7 +124,7 @@ OPTIONS (
 
 CREATE TABLE books AS
   SELECT * FROM books_tmp_vw;
-  
+
 SELECT * FROM books
 
 -- COMMAND ----------

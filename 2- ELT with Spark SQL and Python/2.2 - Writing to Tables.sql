@@ -1,10 +1,4 @@
 -- Databricks notebook source
--- MAGIC %md-sandbox
--- MAGIC 
--- MAGIC <div  style="text-align: center; line-height: 0; padding-top: 9px;">
--- MAGIC   <img src="https://dalhussein.blob.core.windows.net/course-resources/bookstore_schema.png" alt="Databricks Learning" style="width: 600">
--- MAGIC </div>
-
 -- COMMAND ----------
 
 -- MAGIC %run ../Includes/Copy-Datasets
@@ -52,7 +46,7 @@ SELECT count(*) FROM orders
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TEMP VIEW customers_updates AS 
+CREATE OR REPLACE TEMP VIEW customers_updates AS
 SELECT * FROM json.`${dataset.bookstore}/customers-json-new`;
 
 MERGE INTO customers c
@@ -80,5 +74,5 @@ SELECT * FROM books_updates
 MERGE INTO books b
 USING books_updates u
 ON b.book_id = u.book_id AND b.title = u.title
-WHEN NOT MATCHED AND u.category = 'Computer Science' THEN 
+WHEN NOT MATCHED AND u.category = 'Computer Science' THEN
   INSERT *

@@ -1,27 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC 
--- MAGIC 
 -- MAGIC # Delta Live Tables
-
--- COMMAND ----------
-
--- MAGIC %md-sandbox
--- MAGIC 
--- MAGIC <div  style="text-align: center; line-height: 0; padding-top: 9px;">
--- MAGIC   <img src="https://dalhussein.blob.core.windows.net/course-resources/bookstore_schema.png" alt="Databricks Learning" style="width: 600">
--- MAGIC </div>
-
--- COMMAND ----------
-
--- MAGIC %md
--- MAGIC ## Bronze Layer Tables
-
--- COMMAND ----------
-
--- MAGIC %md
--- MAGIC #### orders_raw
-
 -- COMMAND ----------
 
 CREATE OR REFRESH STREAMING LIVE TABLE orders_raw
@@ -43,11 +22,11 @@ AS SELECT * FROM json.`${datasets_path}/customers-json`
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC 
--- MAGIC 
--- MAGIC 
+-- MAGIC
+-- MAGIC
+-- MAGIC
 -- MAGIC ## Silver Layer Tables
--- MAGIC 
+-- MAGIC
 -- MAGIC #### orders_cleaned
 
 -- COMMAND ----------
@@ -68,7 +47,7 @@ AS
 
 -- MAGIC %md
 -- MAGIC >> Constraint violation
--- MAGIC 
+-- MAGIC
 -- MAGIC | **`ON VIOLATION`** | Behavior |
 -- MAGIC | --- | --- |
 -- MAGIC | **`DROP ROW`** | Discard records that violate constraints |
@@ -78,8 +57,8 @@ AS
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC 
--- MAGIC 
+-- MAGIC
+-- MAGIC
 -- MAGIC ## Gold Tables
 
 -- COMMAND ----------
